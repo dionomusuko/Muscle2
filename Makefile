@@ -3,8 +3,8 @@
 db-set:
 	docker-compose exec db bash -c 'mysql -u user -p'
 
-docker-stop:
-	docker stop dio-mysql
+stop:
+	docker stop muslce-db
 
 docker:
 	docker-compose up -d
