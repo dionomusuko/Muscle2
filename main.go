@@ -1,12 +1,15 @@
 package main
 
 import (
+	UserController "github.com/dionomusuko/muscle2/controller"
+	"github.com/dionomusuko/muscle2/db"
 	"github.com/gin-gonic/gin"
-	"golang/go-api/db"
 )
 
 func main() {
-	db.Init()
+	conn := db.NewDB()
+	defer conn.Close()
+
 	router := gin.Default()
 
 	v1 := router.Group("/api/v1")
