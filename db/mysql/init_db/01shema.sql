@@ -24,3 +24,6 @@ CREATE TABLE IF NOT EXISTS tasks(
         ON DELETE CASCADE ON UPDATE CASCADE
 )ENGINE=INNODB DEFAULT CHARSET=utf8mb4;
 
+-- test data
+insert into users(name, email) value('user1', 'user1@example.com');
+insert into tasks(user_id,menu,set_count,rep,comment) value(1,"benchpress",3,30,"very hard");
