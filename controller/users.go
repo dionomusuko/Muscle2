@@ -12,3 +12,6 @@ func GetUsers(c *gin.Context) {
 	db.Find(&users)
 	c.JSON(200, users)
 }
+
+func ShowUser(c *gin.Context) {
+}
