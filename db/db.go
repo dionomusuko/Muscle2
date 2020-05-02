@@ -33,8 +33,3 @@ func NewDB() *gorm.DB {
 
 	return conn
 }
-
-func GetDB() *gorm.DB {
-	var db *gorm.DB
-	return db
-}
