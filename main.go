@@ -20,7 +20,7 @@ func main() {
 			users.GET("/:id", UserController.ShowUser)
 			users.POST("/", UserController.CreateUser)
 			users.PUT("/:id", UserController.UpdateUser)
-			//users.DELETE("/:id", UserController.Deleteuser)
+			users.DELETE("/:id", UserController.DeleteUser)
 		}
 		//tasks := v1.Group("/tasks")
 		//{

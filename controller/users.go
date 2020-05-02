@@ -4,6 +4,7 @@ import (
 	"github.com/dionomusuko/muscle2/db"
 	"github.com/dionomusuko/muscle2/model"
 	"github.com/gin-gonic/gin"
+	"log"
 	"net/http"
 )
 
@@ -50,4 +51,17 @@ func UpdateUser(c *gin.Context) {
 	c.BindJSON(&user)
 	db.Save(&user)
 	c.JSON(http.StatusOK, &user)
+}
+
+func DeleteUser(c *gin.Context) {
+	id := c.Param("id")
+	var user model.User
+	db := db.NewDB()
+
+	if err := db.Where("id = ?", id).First(&user).Error; err != nil {
+		c.AbortWithStatus(http.StatusNotFound)
+		return
+	}
+	db.Delete(&user)
+	log.Printf("delete %v", user.Name)
 }
