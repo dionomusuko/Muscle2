@@ -1,10 +1,26 @@
 package main
 
 import (
-	"github.com/dionomusuko/muscle2/controller"
+	Controller "github.com/dionomusuko/muscle2/controller"
 	"github.com/dionomusuko/muscle2/db"
 	"github.com/gin-gonic/gin"
+	_ "github.com/swaggo/swag/example/celler/docs"
 )
+
+// @title Swagger Example API
+// @version 1.0
+// @description This is a sample server celler server.
+// @termsOfService http://swagger.io/terms/
+
+// @contact.name API Support
+// @contact.url http://www.swagger.io/support
+// @contact.email support@swagger.io
+
+// @license.name Apache 2.0
+// @license.url http://www.apache.org/licenses/LICENSE-2.0.html
+
+// @host petstore.swagger.io
+// @BasePath /v2
 
 func main() {
 	conn := db.NewDB()
@@ -16,19 +32,19 @@ func main() {
 	{
 		users := v1.Group("/users")
 		{
-			users.GET("/", controller.GetUsers)
-			users.GET("/:id", controller.ShowUser)
-			users.POST("/", controller.CreateUser)
-			users.PUT("/:id", controller.UpdateUser)
-			users.DELETE("/:id", controller.DeleteUser)
+			users.GET("/", Controller.GetUsers)
+			users.GET("/:id", Controller.ShowUser)
+			users.POST("/", Controller.CreateUser)
+			users.PUT("/:id", Controller.UpdateUser)
+			users.DELETE("/:id", Controller.DeleteUser)
 		}
 		tasks := v1.Group("/tasks")
 		{
-			tasks.GET("/", controller.GetTasks)
-			tasks.GET("/:id", controller.ShowTask)
-			tasks.POST("/", controller.CreateTask)
-			tasks.PUT("/:id", controller.UpdateTask)
-			tasks.DELETE("/:id", controller.DeleteTask)
+			tasks.GET("/", Controller.GetTasks)
+			tasks.GET("/:id", Controller.ShowTask)
+			//tasks.POST("/", Controller.CreateTask)
+			tasks.PUT("/:id", Controller.UpdateTask)
+			tasks.DELETE("/:id", Controller.DeleteTask)
 		}
 	}
 	router.Run(":8080")

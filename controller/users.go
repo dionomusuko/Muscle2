@@ -8,6 +8,13 @@ import (
 	"net/http"
 )
 
+// ShowUsers godoc
+// @Sumarry Show a user
+// @Description
+// @Accept  json
+// @Produce  json
+// @Success 200 {object} model.User
+// @Router /users [get]
 func GetUsers(c *gin.Context) {
 	var users []model.User
 	db := db.NewDB()
