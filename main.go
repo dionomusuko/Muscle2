@@ -3,6 +3,7 @@ package main
 import (
 	Controller "github.com/dionomusuko/muscle2/controller"
 	"github.com/dionomusuko/muscle2/db"
+	"github.com/gin-contrib/cors"
 	"github.com/gin-gonic/gin"
 	_ "github.com/swaggo/swag/example/celler/docs"
 )
@@ -27,7 +28,6 @@ func main() {
 	defer conn.Close()
 
 	router := gin.Default()
-
 	v1 := router.Group("/api/v1")
 	{
 		users := v1.Group("/users")
@@ -47,5 +47,11 @@ func main() {
 			tasks.DELETE("/:id", Controller.DeleteTask)
 		}
 	}
+	router.Use(cors.New(cors.Config{
+		AllowOrigins:     []string{"http://localhost:3001", "http://localhost:8080"},
+		AllowMethods:     []string{"GET", "POST", "PUT", "DELETE"},
+		AllowHeaders:     []string{"Origin", "Content-Type", "Content-Length", "X-Requested-With", "X-CSRF-Token", "Access-Control-Allow-Headers"},
+		AllowCredentials: true,
+	}))
 	router.Run(":8080")
 }
