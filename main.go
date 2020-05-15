@@ -30,6 +30,15 @@ func main() {
 	router := gin.Default()
 	v1 := router.Group("/api/v1")
 	{
+		// sessionの処理
+		sessions := v1.Group("/")
+		{
+			sessions.POST("/signin", Controller.SignIn)
+		}
+		//{
+		//
+		//}
+		// userの処理
 		users := v1.Group("/users")
 		{
 			users.GET("/", Controller.GetUsers)

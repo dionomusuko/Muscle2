@@ -43,6 +43,12 @@ func CreateUser(c *gin.Context) {
 		})
 		return
 	}
+	// ||複数個いけるらしい（そもそもコード的にはよくないかも）
+	if user.Name == "" || user.Email == "" {
+		c.JSON(http.StatusBadRequest, gin.H{"status": "BadRequest"})
+		log.Println("Name or Email form is empty")
+		return
+	}
 	db.Create(&user)
 	c.JSON(http.StatusOK, &user)
 }
